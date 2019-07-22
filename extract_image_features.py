@@ -30,12 +30,13 @@ print('Out shape: '+str(model_output.get_shape())+'\n')
 init_op = tf.global_variables_initializer()
 saver = tf.train.Saver()
 
-sess = tf.Session()
+sess = tf.Session(config=tf.ConfigProto(
+    gpu_options=tf.GPUOptions(allow_growth=True)))
 print('Loading weights...')
 saver.restore(sess, weights_path)
 print('Done!\n')
 
-all_inps = glob.glob(inp_path+'*.jpg')
+all_inps = glob.glob(os.path.join(inp_path, '*.jpg'))
 if len(all_inps) == 0:
     print('ERR: No jpg images found in '+inp_path+'\n')
     quit()
