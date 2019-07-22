@@ -1,6 +1,5 @@
 import os, glob, argparse
 import numpy as np
-import scipy.io as io
 from utils import img_preprocess
 import tensorflow as tf
 from yolo_models_feature_extraction import build_yolo_v2_feature_extraction
