@@ -49,5 +49,6 @@ for i, inp in enumerate(all_inps):
     inp_feed = np.expand_dims(img_preprocess(inp, shape=img_shape, letterbox=True), 0)
     feed_dict = {model_input: inp_feed}
     out = sess.run(model_output, feed_dict)
-    save_file = os.path.join(save_dir, inp.replace('.jpg', '.npy'))
+    save_file = os.path.join(
+        save_dir, os.path.basename(inp).replace('.jpg', '.npy'))
     np.save(save_file, out)
